@@ -1,16 +1,30 @@
 # SPDX-FileCopyrightText: 2021, microG Project Team
 # SPDX-License-Identifier: CC0-1.0
 
-name: Build
+name: Build Android App
+
 on: [pull_request, push]
+
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+
+      - uses: sparkfabrik/android-build-action@v1.2.0
+
         with:
+
           fetch-depth: 0
+
       - run: ./gradlew --no-daemon build
+
         env:
+
           TERM: dumb
+
           JAVA_OPTS: -Xmx2048m
+
+
